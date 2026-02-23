@@ -93,9 +93,9 @@ ls -lh plan-evacuation.pdf  # ~150KB A5 parfait
 ## 🤝 **Contribuer**
 
 1. Fork le projet
-2. `git checkout -b feature/bouleversement`
+2. `git checkout -b feature/improvements`
 3. `make test-all`
-4. `git push origin feature/bouleversement`
+4. `git push origin feature/improvements`
 5. Pull Request !
 
 ## 📄 **Licence**
