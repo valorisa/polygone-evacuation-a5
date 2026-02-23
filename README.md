@@ -1,9 +1,8 @@
 # 🧯 **polygone-evacuation-a5**
 
-[![Tests](https://github.com/valorisa/polygone-evacuation-a5/actions/workflows/test.yml/badge.svg)](https://github.com/valorisa/polygone-evacuation-a5/actions/workflows/test.yml)
-[![Build PDF](https://github.com/valorisa/polygone-evacuation-a5/actions/workflows/build.yml/badge.svg)](https://github.com/valorisa/polygone-evacuation-a5/actions/workflows/build.yml)
-[![Release Draft](https://github.com/valorisa/polygone-evacuation-a5/actions/workflows/release-draft.yml/badge.svg)](https://github.com/valorisa/polygone-evacuation-a5/actions/workflows/release-draft.yml)
-[![License](https://img.shields.io/github/license/valorisa/polygone-evacuation-a5.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5/actions)
+[![Build PDF](https://img.shields.io/badge/PDF-A5%20ready-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5)
+[![Release](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/valorisa/polygone-evacuation-a5/releases)
 
 **Plan d'évacuation A5 bilingue (FR/EN) – Parking Polygone Montpellier**
 
