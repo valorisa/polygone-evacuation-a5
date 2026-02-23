@@ -1,0 +1,20 @@
+{
+  "project": "polygone-evacuation-a5",
+  "version": "1.0.0",
+  "date": "2026-02-23",
+  "author": "Bertrand Brodeau (@valorisa)",
+  "format": "A5",
+  "language": ["fr", "en"],
+  "features": [
+    "header-footer-auto",
+    "couleurs-securite",
+    "schema-ascii",
+    "tableaux-contacts",
+    "bilingue"
+  ],
+  "build": {
+    "pdf": "plan-evacuation.pdf",
+    "pandoc": "pandoc plan-evacuation.md -o plan-evacuation.pdf --css=style-pdf.css",
+    "wkhtmltopdf": "wkhtmltopdf --page-size A5 plan-evacuation.html plan-evacuation.pdf"
+  }
+}
