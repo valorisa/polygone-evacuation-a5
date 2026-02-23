@@ -1,4 +1,4 @@
-# 🧯 **polygone-evacuation-a5**
+# 🧯 **Polygone-Evacuation-a5**
 
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5/actions)
 [![Build PDF](https://img.shields.io/badge/PDF-A5%20ready-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5)
