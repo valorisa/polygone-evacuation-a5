@@ -1,0 +1,181 @@
+/* ============================================================================
+   style-pdf.css – Plan d'évacuation A5 Parking Polygone
+   Optimisé wkhtmltopdf + Pandoc – 23 février 2026
+   ============================================================================ */
+
+/* === FORMAT A5 PORTRAIT ===
+   Largeur : 148mm | Hauteur : 210mm | Marges : 1.5cm
+*/
+@page {
+  size: A5 portrait;
+  margin: 1.5cm 1.5cm 2.2cm 1.5cm; /* Plus de marge bas pour footer */
+  
+  /* HEADER AUTOMATIQUE */
+  @top-center {
+    content: string(title);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    color: #d32f2f; /* Rouge sécurité */
+    padding-bottom: 2mm;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* FOOTER AUTOMATIQUE */
+  @bottom-center {
+    content: counter(page) " / " string(total-pages) " | " string(date);
+    font-family: 'Courier New', monospace;
+    font-size: 8pt;
+    color: #333;
+    padding-top: 2mm;
+    border-top: 1px solid #e0e0e0;
+  }
+}
+
+/* === VARIABLES CSS COULEURS SÉCURITÉ === */
+:root {
+  --rouge-securite: #d32f2f;
+  --vert-sortie: #2e7d32;
+  --jaune-attention: #f57c00;
+  --bleu-info: #1976d2;
+  --gris-fonce: #212121;
+  --fond-schemas: #f8f9fa;
+}
+
+/* === POLICES RENFORCÉES === */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.4;
+  color: var(--gris-fonce);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* === TITRES SÉCURITÉ === */
+h1 {
+  color: var(--rouge-securite) !important;
+  font-size: 18pt;
+  font-weight: 900;
+  text-align: center;
+  margin: 0 0 8mm 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+  border: 3px solid var(--rouge-securite);
+  padding: 4mm 2mm;
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+}
+
+h2 {
+  color: var(--vert-sortie);
+  font-size: 13pt;
+  font-weight: 700;
+  border-left: 5mm solid var(--vert-sortie);
+  padding-left: 6mm;
+  margin: 6mm 0 4mm 0;
+}
+
+/* === SCHÉMA ASCII OPTIMISÉ === */
+pre {
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 7.5pt;
+  line-height: 1.2;
+  background: var(--fond-schemas);
+  border: 2px solid #ddd;
+  border-radius: 4pt;
+  padding: 6mm;
+  margin: 4mm 0;
+  overflow: visible;
+  white-space: pre;
+  page-break-inside: avoid;
+  box-shadow: 0 2pt 4pt rgba(0,0,0,0.1);
+}
+
+/* === TABLEAUX SÉCURITÉ === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4mm 0;
+  font-size: 9.5pt;
+}
+
+th {
+  background: linear-gradient(135deg, var(--rouge-securite) 0%, #b71c1c 100%);
+  color: white;
+  font-weight: 700;
+  padding: 3mm 2mm;
+  text-align: left;
+  border: 1px solid #000;
+}
+
+td {
+  border: 1px solid #333;
+  padding: 2.5mm 2mm;
+  vertical-align: top;
+}
+
+tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* === IMAGE FILIGRANEE === */
+img {
+  max-width: 95%;
+  max-height: 80mm;
+  opacity: 0.12;
+  margin: 2mm auto;
+  display: block;
+  filter: grayscale(100%) contrast(120%);
+  border: 1px solid #eee;
+}
+
+/* === LISTES NUMÉROTÉES URGENCE === */
+ol {
+  font-size: 11pt;
+  line-height: 1.5;
+  padding-left: 8mm;
+}
+
+ol li {
+  margin-bottom: 3mm;
+  font-weight: 500;
+}
+
+/* === CASES COULEURS === */
+.urgent { 
+  background: #fff3e0; 
+  border-left: 4mm solid var(--jaune-attention);
+  padding: 3mm;
+}
+
+.warning { 
+  background: #e8f5e8; 
+  border-left: 4mm solid var(--vert-sortie);
+  padding: 3mm;
+}
+
+/* === FOOTER FIXE === */
+.footer {
+  margin-top: 8mm;
+  padding: 4mm 2mm;
+  font-size: 8pt;
+  color: #555;
+  border-top: 2px solid var(--rouge-securite);
+  background: #fafafa;
+}
+
+/* === TYPOGRAPHIE SPÉCIALISÉE === */
+.center { text-align: center; }
+.right { text-align: right; }
+.bold { font-weight: 700; }
+.small { font-size: 9pt; }
+.large { font-size: 12pt; }
+.huge { font-size: 16pt; }
+
+/* === SÉCURITÉ IMPRESSION === */
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  h1 { -webkit-print-color-adjust: exact; }
+  th { -webkit-print-color-adjust: exact; }
+}
