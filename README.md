@@ -14,9 +14,9 @@
 
 ```bash
 ./setup-complete.sh        # 🧙‍♂️ Init complète (3 min)
-make pdf                  # 📄 Génère PDF A5 parfait
+make pdf                   # 📄 Génère PDF A5 parfait
 make changelog LEVEL=patch # 🆕 Nouvelle version
-bash auto-release.sh      # 🚀 Publier GitHub
+bash auto-release.sh       # 🚀 Publier GitHub
 ```
 
 ## 📋 **Commandes principales**
