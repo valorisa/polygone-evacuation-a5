@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "polygone-evacuation-a5"
+version = "1.0.0"
+description = "Plan évacuation A5 Parking Polygone"
+authors = [{name = "Bertrand Brodeau", email = "bertrand@valorisa.fr"}]
+license = "MIT"
+dependencies = [
+    "pandoc>=3.0",
+    "pytest>=7.0"
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "B", "Q"]
+ignore = ["E501"]
