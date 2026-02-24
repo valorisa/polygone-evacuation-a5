@@ -159,7 +159,7 @@ polygone-evacuation-a5/
 
 ---
 
-## 📄 2. tasks.ps1 (nouveau fichier)
+## 📄 tasks.ps1 (nouveau fichier)
 
 ```powershell
 #Requires -Version 5.1
@@ -316,7 +316,7 @@ switch ($Task) {
 
 ---
 
-## 📄 3. auto-release.ps1 (corrigé)
+## 📄 auto-release.ps1 (corrigé)
 
 ```powershell
 #Requires -Version 5.1
@@ -466,7 +466,7 @@ Write-Host ""
 
 ---
 
-## 📄 4. index.json (version synchronisée)
+## 📄 index.json (version synchronisée)
 
 ```json
 {
@@ -493,7 +493,7 @@ Write-Host ""
 
 ---
 
-## 📄 5. pyproject.toml (corrigé)
+## 📄 pyproject.toml (corrigé)
 
 ```toml
 [build-system]
@@ -537,7 +537,7 @@ line_length = 88
 
 ---
 
-## 📄 6. build.py (nettoyé)
+## 📄 build.py (nettoyé)
 
 ```python
 #!/usr/bin/env python3
@@ -579,7 +579,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📄 7. CHANGELOG.md (reformaté)
+## 📄 CHANGELOG.md (reformaté)
 
 ```markdown
 # Changelog
@@ -618,7 +618,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
 
-## 📄 8. release.py (date dynamique)
+## 📄 release.py (date dynamique)
 
 ```python
 #!/usr/bin/env python3
@@ -694,7 +694,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📄 9. update_changelog.py (exception spécifique)
+## 📄 update_changelog.py (exception spécifique)
 
 ```python
 #!/usr/bin/env python3
