@@ -1,4 +1,4 @@
 {
   "default": true,
-  "MD036": false
+  "MD036/no-emphasis-as-heading": false
 }
