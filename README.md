@@ -156,7 +156,6 @@ polygone-evacuation-a5/
 ## 📜 **Licence**
 
 [MIT](LICENSE) – © 2026 Bertrand Brodeau (@valorisa)
-```
 
 ---
 
