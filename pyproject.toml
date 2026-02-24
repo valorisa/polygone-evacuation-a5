@@ -4,20 +4,34 @@ build-backend = "hatchling.build"
 
 [project]
 name = "polygone-evacuation-a5"
-version = "1.0.0"
-description = "Plan évacuation A5 Parking Polygone"
-authors = [{name = "Bertrand Brodeau", email = "bertrand@valorisa.fr"}]
+version = "1.0.1"
+description = "Plan évacuation A5 Parking Polygone - Bilingue FR/EN"
+readme = "README.md"
 license = "MIT"
-dependencies = [
-    "pandoc>=3.0",
-    "pytest>=7.0"
-]
+authors = [{ name = "Bertrand Brodeau", email = "bertrand@valorisa.fr" }]
+requires-python = ">=3.9"
+
+# Note: pandoc et wkhtmltopdf sont des prérequis SYSTÈME (voir README)
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+dev = ["pre-commit", "black", "ruff", "isort"]
+
+[project.urls]
+Homepage = "https://github.com/valorisa/polygone-evacuation-a5"
+Repository = "https://github.com/valorisa/polygone-evacuation-a5.git"
+Issues = "https://github.com/valorisa/polygone-evacuation-a5/issues"
 
 [tool.black]
 line-length = 88
-target-version = ['py39']
+target-version = ['py39', 'py310', 'py311', 'py312']
 
 [tool.ruff]
 line-length = 88
-select = ["E", "F", "B", "Q"]
+select = ["E", "F", "B", "Q", "I"]
 ignore = ["E501"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
