@@ -27,7 +27,7 @@ Get-Item plan-evacuation.pdf | Select-Object Name, Length
 ### Commandes disponibles (Windows)
 
 | Action | Commande | Résultat |
-|--------|----------|----------|
+| ------ | -------- | -------- |
 | **PDF** | `.\tasks.ps1 pdf` | `plan-evacuation.pdf` (A5) |
 | **Tests** | `.\tasks.ps1 test` | Exécute pytest |
 | **Clean** | `.\tasks.ps1 clean` | Supprime le PDF |
@@ -57,7 +57,7 @@ ls -lh plan-evacuation.pdf
 ### Commandes disponibles (Linux/macOS)
 
 | Action | Commande | Résultat |
-|--------|----------|----------|
+| ------ | -------- | -------- |
 | **PDF** | `make pdf` | `plan-evacuation.pdf` (A5) |
 | **Tests** | `make test-all` | 100% coverage |
 | **Release** | `make changelog` | v1.0.1 + CHANGELOG |
@@ -108,7 +108,7 @@ sudo apt install pandoc wkhtmltopdf
 
 ## 📁 **Structure du projet**
 
-```
+```text
 polygone-evacuation-a5/
 ├── 📄 plan-evacuation.md      # Contenu principal bilingue
 ├── 🎨 style-pdf.css           # CSS A5 sécurité pro
@@ -127,7 +127,7 @@ polygone-evacuation-a5/
 
 ## 📄 **Exemple de rendu PDF A5**
 
-```
+```text
 ┌─────────────────────────────────────────────────────┐
 │ [HEADER ROUGE] PLAN D'ÉVACUATION – Page 1/2         │
 ├─────────────────────────────────────────────────────┤
@@ -767,7 +767,7 @@ if __name__ == "__main__":
 ## ✅ Récapitulatif des fichiers à créer/remplacer
 
 | Fichier | Action |
-|---------|--------|
+| ------- | ------ |
 | `README.md` | **Remplacer** |
 | `tasks.ps1` | **Créer** (nouveau) |
 | `auto-release.ps1` | **Remplacer** |
