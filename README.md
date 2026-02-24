@@ -439,7 +439,7 @@ if (Get-Command gh -ErrorAction SilentlyContinue) {
         
         Write-Host ""
         Write-Host "═══════════════════════════════════════════════════" -ForegroundColor Green
-        Write-Host "  ✅ Release v$version publiée avec succès !" -ForegroundColor Green
+        Write-Host "  ✅ Release v$version publiée avec succès !       " -ForegroundColor Green
         Write-Host "═══════════════════════════════════════════════════" -ForegroundColor Green
     }
     catch {
