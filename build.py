@@ -12,7 +12,7 @@ def build_pdf():
         "pandoc",
         "plan-evacuation.md",
         "-o", "plan-evacuation.pdf",
-        "--css=style-pdf.css",
+        "--css=assets/style-pdf.css",
         "--pdf-engine=wkhtmltopdf",
         "--dpi=300",
         "-V", "geometry:margin=1.5cm",
