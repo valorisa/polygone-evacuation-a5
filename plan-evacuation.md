@@ -2,7 +2,7 @@
 
 **A5 • Bilingue FR/EN • 23 février 2026**
 
-![Filigrane parking](1000023888.jpg)
+![Plan de masse](assets/plan-background.jpg)
 
 ## 🅿️ **SCHÉMA ASCII – SORTIES**
 

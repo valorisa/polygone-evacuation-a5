@@ -1,182 +1,144 @@
 /* ============================================================================
    style-pdf.css – Plan d'évacuation A5 Parking Polygone
-   Optimisé wkhtmltopdf + Pandoc – 23 février 2026
+   Optimisé wkhtmltopdf + Pandoc – 25 février 2026
    ============================================================================ */
 
-/* === FORMAT A5 PORTRAIT ===
-   Largeur : 148mm | Hauteur : 210mm | Marges : 1.5cm
-*/
+/* === FORMAT A5 PORTRAIT === */
 @page {
   size: A5 portrait;
-  margin: 1.5cm 1.5cm 2.2cm 1.5cm; /* Plus de marge bas pour footer */
+  margin: 1.5cm 1.5cm 2.2cm 1.5cm;
   
-  /* HEADER AUTOMATIQUE */
   @top-center {
-    content: string(title);
+    content: "PLAN D'ÉVACUATION - POLYGONE";
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 10pt;
+    font-size: 9pt;
     font-weight: bold;
-    color: #d32f2f; /* Rouge sécurité */
-    padding-bottom: 2mm;
+    color: #d32f2f;
     border-bottom: 1px solid #ccc;
   }
   
-  /* FOOTER AUTOMATIQUE */
   @bottom-center {
-    content: counter(page) " / " string(total-pages) " | " string(date);
+    content: "Page " counter(page) " | Zone A5";
     font-family: 'Courier New', monospace;
     font-size: 8pt;
-    color: #333;
-    padding-top: 2mm;
-    border-top: 1px solid #e0e0e0;
+    color: #666;
+    border-top: 1px solid #eee;
   }
 }
 
-/* === VARIABLES CSS COULEURS SÉCURITÉ === */
+/* === VARIABLES === */
 :root {
   --rouge-securite: #d32f2f;
   --vert-sortie: #2e7d32;
-  --jaune-attention: #f57c00;
-  --bleu-info: #1976d2;
   --gris-fonce: #212121;
   --fond-schemas: #f8f9fa;
 }
 
-/* === POLICES RENFORCÉES === */
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 11pt;
   line-height: 1.4;
   color: var(--gris-fonce);
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
+  background-color: white;
 }
 
-/* === TITRES SÉCURITÉ === */
+/* === TITRES === */
 h1 {
-  color: var(--rouge-securite) !important;
+  color: var(--rouge-securite);
   font-size: 18pt;
   font-weight: 900;
   text-align: center;
-  margin: 0 0 8mm 0;
+  margin: 0 0 5mm 0;
   text-transform: uppercase;
-  letter-spacing: 0.5pt;
   border: 3px solid var(--rouge-securite);
-  padding: 4mm 2mm;
-  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  padding: 4mm;
+  background: #fff5f5;
 }
 
 h2 {
   color: var(--vert-sortie);
   font-size: 13pt;
-  font-weight: 700;
   border-left: 5mm solid var(--vert-sortie);
-  padding-left: 6mm;
-  margin: 6mm 0 4mm 0;
+  padding-left: 4mm;
+  margin-top: 6mm;
 }
 
-/* === SCHÉMA ASCII OPTIMISÉ === */
+/* === SCHÉMA ASCII (L'essentiel du plan) === */
 pre {
   font-family: 'Courier New', Consolas, monospace;
-  font-size: 7.5pt;
-  line-height: 1.2;
+  font-size: 8pt;
+  line-height: 1.1;
   background: var(--fond-schemas);
-  border: 2px solid #ddd;
-  border-radius: 4pt;
-  padding: 6mm;
+  border: 1px solid #ccc;
+  padding: 5mm;
   margin: 4mm 0;
-  overflow: visible;
-  white-space: pre;
   page-break-inside: avoid;
-  box-shadow: 0 2pt 4pt rgba(0,0,0,0.1);
 }
 
-/* === TABLEAUX SÉCURITÉ === */
+/* === TABLEAUX === */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 4mm 0;
-  font-size: 9.5pt;
 }
 
 th {
-  background: linear-gradient(135deg, var(--rouge-securite) 0%, #b71c1c 100%);
+  background-color: var(--rouge-securite);
   color: white;
-  font-weight: 700;
-  padding: 3mm 2mm;
+  padding: 2mm;
   text-align: left;
-  border: 1px solid #000;
+  font-size: 9pt;
 }
 
 td {
-  border: 1px solid #333;
-  padding: 2.5mm 2mm;
-  vertical-align: top;
+  border: 1px solid #ccc;
+  padding: 2mm;
+  font-size: 9pt;
 }
 
-tr:nth-child(even) {
-  background: #f8f9fa;
-}
-
-/* === IMAGE FILIGRANEE === */
+/* === GESTION DE L'IMAGE (PLAN-BACKGROUND) === 
+   Si l'image est insérée via Markdown : ![plan](assets/plan-background.jpg)
+*/
 img {
-  max-width: 95%;
-  max-height: 80mm;
-  opacity: 0.12;
-  margin: 2mm auto;
   display: block;
-  filter: grayscale(100%) contrast(120%);
+  margin: 5mm auto;
+  max-width: 100%;
+  height: auto;
+  opacity: 0.15; /* Effet filigrane */
+  filter: grayscale(100%);
   border: 1px solid #eee;
+  page-break-inside: avoid;
 }
 
-/* === LISTES NUMÉROTÉES URGENCE === */
-ol {
-  font-size: 11pt;
-  line-height: 1.5;
-  padding-left: 8mm;
+/* Optionnel : Si tu veux l'image en VRAI fond de page (watermark fixe) 
+   Décommente les lignes ci-dessous si nécessaire :
+*/
+/*
+body::before {
+  content: "";
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  width: 80%;
+  height: 60%;
+  background-image: url("plan-background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.08;
+  z-index: -1;
 }
+*/
 
-ol li {
-  margin-bottom: 3mm;
-  font-weight: 500;
-}
-
-/* === CASES COULEURS === */
+/* === ALERTES === */
 .urgent { 
   background: #fff3e0; 
-  border-left: 4mm solid var(--jaune-attention);
+  border-left: 4mm solid #f57c00;
   padding: 3mm;
+  margin: 4mm 0;
 }
 
-.warning { 
-  background: #e8f5e8; 
-  border-left: 4mm solid var(--vert-sortie);
-  padding: 3mm;
-}
-
-/* === FOOTER FIXE === */
-.footer {
-  margin-top: 8mm;
-  padding: 4mm 2mm;
-  font-size: 8pt;
-  color: #555;
-  border-top: 2px solid var(--rouge-securite);
-  background: #fafafa;
-}
-
-/* === TYPOGRAPHIE SPÉCIALISÉE === */
-.center { text-align: center; }
-.right { text-align: right; }
-.bold { font-weight: 700; }
-.small { font-size: 9pt; }
-.large { font-size: 12pt; }
-.huge { font-size: 16pt; }
-
-/* === SÉCURITÉ IMPRESSION === */
+/* === IMPRESSION === */
 @media print {
-  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  h1 { -webkit-print-color-adjust: exact; }
-  th { -webkit-print-color-adjust: exact; }
+  body { -webkit-print-color-adjust: exact; }
 }
-
