@@ -1,137 +1,45 @@
-# 🚨 **Polygone-Evacuation-A5**
+# 🏢 Polygone Evacuation A5
 
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5/actions)
-[![Docker Ready](https://img.shields.io/badge/Docker-ready-blue)](Dockerfile)
-[![Build PDF](https://img.shields.io/badge/PDF-A5%20ready-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5)
-[![Version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/valorisa/polygone-evacuation-a5/refs/heads/main/index.json&label=version&query=$.version&color=blue)](https://github.com/valorisa/polygone-evacuation-a5/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Pandoc](https://img.shields.io/badge/pandoc-required-orange.svg)](https://pandoc.org/)
 
-**Plan d'évacuation au format A5 bilingue (FR/EN) – Parking Polygone Montpellier**
-
-> **Génère automatiquement** un PDF A5 imprimable de **sécurité professionnelle** avec schéma ASCII, procédures d'urgence, contacts et **header/footer automatiques**.
+Plan d'évacuation pour le bâtiment Le Polygone à Montpellier, généré automatiquement en PDF A5 à partir d'un script.
 
 ---
 
-## 🚀 Démarrage rapide (recommandé)
+## 📋 Table des matières
 
-### 🐳 Via Docker (toutes plateformes)
-Docker garantit un environnement identique et évite d’installer Pandoc/wkhtmltopdf localement.
-
-```bash
-# 1. Build de l'image
-docker build -t polygone-evacuation-a5 .
-
-# 2. Génération du PDF (plan-evacuation.pdf apparaît dans le dossier courant)
-docker run --rm -v "$(pwd):/data" polygone-evacuation-a5
-```
-
-*Note Windows (PowerShell) : utilisez `${PWD}` à la place de `$(pwd)`*  
-```powershell
-docker run --rm -v ${PWD}:/data polygone-evacuation-a5
-```
+- [Fonctionnalités](#-fonctionnalités)
+- [Structure du projet](#-structure-du-projet)
+- [Prérequis](#-prérequis)
+- [Installation](#-installation)
+- [Usage](#-usage)
+  - [Windows (PowerShell 5.1+)](#usage-windows-powershell-51)
+  - [Linux/macOS](#usage-linuxmacos)
+- [Développement](#-développement)
+- [Tests](#-tests)
+- [Releases automatiques](#-releases-automatiques)
+- [Contribution](#-contribution)
+- [Licence](#-licence)
 
 ---
 
-## 🖥️ Usage Windows (PowerShell 5.1+)
+## ✨ Fonctionnalités
 
-```powershell
-# 1. Cloner
-git clone https://github.com/valorisa/polygone-evacuation-a5.git
-Set-Location polygone-evacuation-a5
-
-# 2. Générer le PDF
-.\tasks.ps1 pdf
-
-# 3. Vérifier le résultat
-Get-Item plan-evacuation.pdf | Select-Object Name, Length
-```
-
-### Commandes disponibles (Windows)
-| Action | Commande | Résultat |
-| ------ | -------- | -------- |
-| **PDF** | `.\tasks.ps1 pdf` | `plan-evacuation.pdf` (A5) |
-| **Tests** | `.\tasks.ps1 test` | Exécute pytest |
-| **Clean** | `.\tasks.ps1 clean` | Supprime le PDF |
-| **Changelog** | `.\tasks.ps1 changelog` | Met à jour CHANGELOG.md |
-| **Release** | `.\auto-release.ps1` | Publie sur GitHub |
-| **Aide** | `.\tasks.ps1 help` | Liste des commandes |
+- ✅ Génération PDF A5 optimisée pour l'impression
+- 🎨 Mise en page personnalisée avec CSS
+- 🖼️ Support d'image de fond (plan du bâtiment)
+- 🔄 Pipeline de build automatisé
+- 📦 Releases GitHub automatiques
+- 🐳 Support Docker pour builds reproductibles
+- 🧪 Tests unitaires avec pytest
 
 ---
 
-## 🐧 Usage Linux/macOS (Bash)
+## 📂 Structure du projet
 
-```bash
-# 1. Cloner
-git clone https://github.com/valorisa/polygone-evacuation-a5.git
-cd polygone-evacuation-a5
-
-# 2. Générer le PDF
-make pdf
-
-# 3. Vérifier
-ls -lh plan-evacuation.pdf
 ```
-
-### Commandes disponibles (Linux/macOS)
-| Action | Commande | Résultat |
-| ------ | -------- | -------- |
-| **PDF** | `make pdf` | `plan-evacuation.pdf` (A5) |
-| **Tests** | `make test-all` | Exécute pytest |
-| **Release** | `make changelog` | Met à jour CHANGELOG.md |
-| **Setup** | `./setup-complete.sh` | Git + pre-commit + tests |
-| **Clean** | `make clean` | Supprime PDF |
-
----
-
-## ⚙️ Prérequis
-
-### Docker (recommandé)
-Aucune dépendance locale supplémentaire.
-
-### Installation locale (si sans Docker)
-
-**Windows**
-```powershell
-winget install JohnMacFarlane.Pandoc
-winget install wkhtmltopdf.wkhtmltopdf
-```
-
-**macOS**
-```bash
-brew install pandoc wkhtmltopdf
-```
-
-**Ubuntu/Debian**
-```bash
-sudo apt install pandoc wkhtmltopdf
-```
-
----
-
-## 🔤 Encodage UTF‑8 et GitIngest (Windows)
-
-Les utilisateurs PowerShell 5.1 peuvent rencontrer des problèmes d’encodage (mojibake, box‑drawing, etc.).  
-Un guide dédié est disponible, avec un mini‑script prêt à l’emploi :
-
-👉 **Voir : [DEV_SETUP.md](DEV_SETUP.md)**  
-👉 Script : `tools/utf8_utils.ps1`
-
----
-
-## 🎯 Fonctionnalités clés
-
-- 📐 **Format A5 portrait** (148×210mm) – Imprimable urgence  
-- 📑 **Header/footer automatique** – Chaque page numérotée  
-- 🎨 **Couleurs sécurité** – Rouge/Vert/Jaune norme  
-- 🗺️ **Schéma ASCII optimisé** – Bordures + ombre CSS  
-- 🌍 **Bilingue FR/EN** – Procédures + contacts  
-- 🤖 **100% automatisé** – Makefile + PowerShell + Python  
-- 🐳 **Docker Ready** – Génération sans dépendances locales  
-
----
-
-## 📁 Structure du projet
-
-```text
 PS C:\Users\bbrod\Projets\Polygone-Evacuation-a5> tree
 .
 ├── DEV_SETUP.md
@@ -151,6 +59,7 @@ PS C:\Users\bbrod\Projets\Polygone-Evacuation-a5> tree
 │   └── mon_projet.txt
 ├── index.json
 ├── plan-evacuation.md
+├── plan-evacuation.pdf
 ├── pyproject.toml
 ├── pytest.ini
 ├── scripts
@@ -167,44 +76,220 @@ PS C:\Users\bbrod\Projets\Polygone-Evacuation-a5> tree
 └── tools
     └── utf8_utils.ps1
 
-5 directories, 27 files
+5 directories, 28 files
 ```
 
 ---
 
-## 📄 Exemple de rendu PDF A5
+## 🔧 Prérequis
 
-```text
-┌─────────────────────────────────────────────────────┐
-│ [HEADER ROUGE] PLAN D'ÉVACUATION – Page 1/2         │
-├─────────────────────────────────────────────────────┤
-│ 🗺️ SCHÉMA ASCII (5 sorties)                         │
-│ 📋 PROCÉDURES FR (5 étapes)                         │
-│ 📋 PROCEDURES EN (5 steps)                          │
-│ 📞 CONTACTS (112, sécurité, etc.)                   │
-│ ⚠️ RÈGLES (NE PAS / À FAIRE)                        │
-├─────────────────────────────────────────────────────┤
-│ [FOOTER] Page 1/2 | 23 février 2026                 │
-└─────────────────────────────────────────────────────┘
+### Outils requis
+
+| Outil | Version minimale | Installation |
+|-------|------------------|--------------|
+| **Python** | 3.8+ | [python.org](https://www.python.org/downloads/) |
+| **Pandoc** | 2.0+ | [pandoc.org](https://pandoc.org/installing.html) |
+| **wkhtmltopdf** | 0.12.6+ | [wkhtmltopdf.org](https://wkhtmltopdf.org/downloads.html) |
+
+### Vérification rapide
+
+```powershell
+python --version
+pandoc --version
+wkhtmltopdf --version
 ```
 
 ---
 
-## 🤖 Contribuer
+## 📥 Installation
 
-1. Fork le projet  
-2. `git checkout -b feature/improvements`  
-3. **Configurer Git en LF** :
-   ```bash
-   git config core.autocrlf false
-   git config core.eol lf
-   ```
-4. `.\tasks.ps1 test` (Windows) ou `make test-all` (Linux/macOS)  
-5. `git push origin feature/improvements`  
-6. Pull Request 🎉  
+### Windows (Chocolatey recommandé)
+
+```powershell
+# 1. Installer Chocolatey (si nécessaire)
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# 2. Installer les dépendances
+choco install python pandoc wkhtmltopdf -y
+
+# 3. Redémarrer PowerShell et vérifier
+python --version
+pandoc --version
+wkhtmltopdf --version
+```
+
+### Linux (Ubuntu/Debian)
+
+```bash
+sudo apt update
+sudo apt install python3 python3-pip pandoc wkhtmltopdf -y
+```
+
+### macOS (Homebrew)
+
+```bash
+brew install python pandoc wkhtmltopdf
+```
 
 ---
 
-## 📜 Licence
+## 🚀 Usage
 
-[MIT](LICENSE) – © 2026 Bertrand Brodeau (@valorisa)
+### Usage Windows (PowerShell 5.1+)
+
+```powershell
+# 1. Cloner le projet
+git clone https://github.com/valorisa/polygone-evacuation-a5.git
+Set-Location polygone-evacuation-a5
+
+# 2. Générer le PDF
+.\tasks.ps1 pdf
+
+# --- Résultat attendu en cas de succès ---
+# Loading pages (1/6)
+# Counting pages (2/6)
+# Resolving links (4/6)
+# Loading headers and footers (5/6)
+# Printing pages (6/6)
+# Done
+# ✅ PDF généré : plan-evacuation.pdf
+# ------------------------------------------
+
+# 3. Vérifier le résultat
+Get-Item plan-evacuation.pdf | Select-Object Name, Length
+```
+
+### Usage Linux/macOS
+
+```bash
+# 1. Cloner
+git clone https://github.com/valorisa/polygone-evacuation-a5.git
+cd polygone-evacuation-a5
+
+# 2. Générer
+make pdf
+
+# 3. Vérifier
+ls -lh plan-evacuation.pdf
+```
+
+### Usage Docker
+
+```bash
+docker build -t polygone-pdf .
+docker run --rm -v $(pwd):/app polygone-pdf
+```
+
+---
+
+## 🛠️ Développement
+
+### Commandes disponibles
+
+| Action | Windows | Linux/macOS | Résultat |
+|--------|---------|-------------|----------|
+| **PDF** | `.\tasks.ps1 pdf` | `make pdf` | `plan-evacuation.pdf` (A5) |
+| **Tests** | `.\tasks.ps1 test` | `make test` | Exécute pytest |
+| **Clean** | `.\tasks.ps1 clean` | `make clean` | Supprime les artifacts |
+| **Release** | `.\tasks.ps1 release` | `make release` | Crée une release GitHub |
+
+### Modifier le contenu
+
+1. Éditez `plan-evacuation.md` avec vos informations
+2. Ajustez le style dans `assets/style-pdf.css`
+3. Remplacez l'image de fond `assets/plan-background.jpg` si nécessaire
+4. Regénérez avec `python build.py`
+
+---
+
+## 🧪 Tests
+
+```powershell
+# Windows
+.\tasks.ps1 test
+
+# Linux/macOS
+make test
+```
+
+Les tests vérifient :
+- ✅ Encodage UTF-8 des fichiers Markdown
+- ✅ Présence des dépendances (pandoc, wkhtmltopdf)
+- ✅ Validation de la structure des fichiers
+
+---
+
+## 📦 Releases automatiques
+
+Le projet inclut des scripts pour automatiser les releases GitHub :
+
+### Windows
+
+```powershell
+.\scripts\auto-release.ps1 -Version "v1.2.0" -Message "Ajout de nouvelles sections"
+```
+
+### Linux/macOS
+
+```bash
+./scripts/auto-release.sh v1.2.0 "Ajout de nouvelles sections"
+```
+
+Les scripts :
+1. Mettent à jour `CHANGELOG.md`
+2. Créent un tag Git
+3. Génèrent le PDF
+4. Publient la release sur GitHub avec le PDF attaché
+
+---
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! Consultez [MAINTAINING.md](docs/MAINTAINING.md) pour les détails.
+
+### Workflow de contribution
+
+1. Fork le projet
+2. Créez une branche (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'feat: Add AmazingFeature'`)
+4. Pushez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+### Conventions de commits
+
+Nous utilisons [Conventional Commits](https://www.conventionalcommits.org/) :
+
+- `feat:` Nouvelle fonctionnalité
+- `fix:` Correction de bug
+- `docs:` Documentation
+- `style:` Formatage, CSS
+- `refactor:` Refactorisation de code
+- `test:` Ajout/modification de tests
+- `chore:` Tâches de maintenance
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+## 📞 Contact
+
+- **Projet** : [Polygone-Evacuation-a5](https://github.com/valorisa/Polygone-Evacuation-a5)
+- **Issues** : [GitHub Issues](https://github.com/valorisa/Polygone-Evacuation-a5/issues)
+
+---
+
+## 🙏 Remerciements
+
+- [Pandoc](https://pandoc.org/) pour la conversion Markdown → HTML
+- [wkhtmltopdf](https://wkhtmltopdf.org/) pour le rendu HTML → PDF
+- La communauté Open Source pour les outils utilisés
+
+---
+
+**Made with ❤️ by Valorisa**
