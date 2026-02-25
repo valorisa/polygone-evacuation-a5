@@ -98,8 +98,8 @@ sudo apt install pandoc wkhtmltopdf
 
 ### Problème rencontré
 
-Sur Windows PowerShell 5.1, l'outil [gitingest](https://github.com/cyclotruc/gitingest)
-génère des dumps contenant des caractères Unicode box-drawing (`└`, `├`, `│`, `─`)
+Sur Windows PowerShell 5.1, l'outil CLI de [gitingest](https://github.com/cyclotruc/gitingest)
+peut générer des dumps contenant des caractères Unicode box-drawing (`└`, `├`, `│`, `─`)
 dans l'arborescence des fichiers. Ces caractères provoquent des erreurs d'affichage
 ou de parsing lorsqu'ils sont transmis à un LLM ou traités par des outils tiers.
 
