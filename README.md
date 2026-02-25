@@ -1,9 +1,9 @@
 # 🚨 **Polygone-Evacuation-A5**
 
-[![Version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/valorisa/polygone-evacuation-a5/refs/heads/main/index.json&label=version&query=$.version&color=blue)](https://github.com/valorisa/polygone-evacuation-a5/releases)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5/actions)
 [![Docker Ready](https://img.shields.io/badge/Docker-ready-blue)](Dockerfile)
 [![Build PDF](https://img.shields.io/badge/PDF-A5%20ready-brightgreen)](https://github.com/valorisa/polygone-evacuation-a5)
+[![Version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/valorisa/polygone-evacuation-a5/refs/heads/main/index.json&label=version&query=$.version&color=blue)](https://github.com/valorisa/polygone-evacuation-a5/releases)
 
 **Plan d'évacuation au format A5 bilingue (FR/EN) – Parking Polygone Montpellier**
 
