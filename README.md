@@ -15,8 +15,7 @@ Plan d'évacuation pour le bâtiment Le Polygone à Montpellier, généré autom
 - [Prérequis](#-prérequis)
 - [Installation](#-installation)
 - [Usage](#-usage)
-  - [Windows (PowerShell 5.1+)](#usage-windows-powershell-51)
-  - [Linux/macOS](#usage-linuxmacos)
+- [Dépannage (Accès PDF Refusé)](#-dépannage-accès-pdf-refusé)
 - [Développement](#-développement)
 - [Tests](#-tests)
 - [Releases automatiques](#-releases-automatiques)
@@ -39,7 +38,7 @@ Plan d'évacuation pour le bâtiment Le Polygone à Montpellier, généré autom
 
 ## 📂 Structure du projet
 
-```
+```text
 PS C:\Users\bbrod\Projets\Polygone-Evacuation-a5> tree
 .
 ├── DEV_SETUP.md
@@ -48,31 +47,31 @@ PS C:\Users\bbrod\Projets\Polygone-Evacuation-a5> tree
 ├── Makefile
 ├── README.md
 ├── assets
-│   ├── plan-background.jpg
-│   └── style-pdf.css
+│   ├── plan-background.jpg
+│   └── style-pdf.css
 ├── build.py
 ├── docs
-│   ├── CHANGELOG.md
-│   ├── Hello-World.txt
-│   ├── MAINTAINING.md
-│   ├── Polygone-Evacuation-a5.txt
-│   └── mon_projet.txt
+│   ├── CHANGELOG.md
+│   ├── Hello-World.txt
+│   ├── MAINTAINING.md
+│   ├── Polygone-Evacuation-a5.txt
+│   └── mon_projet.txt
 ├── index.json
 ├── plan-evacuation.md
 ├── plan-evacuation.pdf
 ├── pyproject.toml
 ├── pytest.ini
 ├── scripts
-│   ├── auto-release.ps1
-│   ├── auto-release.sh
-│   ├── release.py
-│   └── update_changelog.py
+│   ├── auto-release.ps1
+│   ├── auto-release.sh
+│   ├── release.py
+│   └── update_changelog.py
 ├── tasks.ps1
 ├── tests
-│   ├── test-clean.txt
-│   ├── test-hello.txt
-│   ├── test-manuel.txt
-│   └── test_utf8.txt
+│   ├── test-clean.txt
+│   ├── test-hello.txt
+│   ├── test-manuel.txt
+│   └── test_utf8.txt
 └── tools
     └── utf8_utils.ps1
 
@@ -184,6 +183,33 @@ docker run --rm -v $(pwd):/app polygone-pdf
 
 ---
 
+## 🔍 Dépannage (Accès PDF Refusé)
+
+Si vous rencontrez l'erreur **"L'accès au fichier a été refusé"** lors de l'ouverture du PDF avec Microsoft Edge, voici les solutions testées qui fonctionnent :
+
+### 1. Ouvrir avec le lecteur système par défaut (Solution directe)
+Au lieu de passer par le navigateur, utilisez ces commandes pour forcer l'ouverture avec votre application PDF (Acrobat, etc.) :
+```powershell
+Start-Process .\plan-evacuation.pdf
+# OU
+Invoke-Item .\plan-evacuation.pdf
+```
+
+### 2. Débloquer le fichier
+Parfois, Windows bloque les fichiers générés par des scripts pour votre sécurité :
+```powershell
+Unblock-File -Path .\plan-evacuation.pdf
+```
+
+### 3. Solution radicale (Copie locale)
+Si les droits du dossier projet sont trop restrictifs, copiez le fichier dans vos téléchargements :
+```powershell
+Copy-Item .\plan-evacuation.pdf -Destination $env:USERPROFILE\Downloads\
+Start-Process "$env:USERPROFILE\Downloads\plan-evacuation.pdf"
+```
+
+---
+
 ## 🛠️ Développement
 
 ### Commandes disponibles
@@ -226,13 +252,11 @@ Les tests vérifient :
 Le projet inclut des scripts pour automatiser les releases GitHub :
 
 ### Windows
-
 ```powershell
 .\scripts\auto-release.ps1 -Version "v1.2.0" -Message "Ajout de nouvelles sections"
 ```
 
 ### Linux/macOS
-
 ```bash
 ./scripts/auto-release.sh v1.2.0 "Ajout de nouvelles sections"
 ```
