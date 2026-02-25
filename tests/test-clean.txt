@@ -1,0 +1,6 @@
+﻿Directory structure:
+ mon-projet/
+     src/
+        main.py
+     README.md
+
