@@ -94,6 +94,107 @@ sudo apt install pandoc wkhtmltopdf
 
 ---
 
+## 🔤 **Encodage UTF-8 et GitIngest (Windows)**
+
+### Problème rencontré
+
+Sur Windows PowerShell 5.1, l'outil [gitingest](https://github.com/cyclotruc/gitingest)
+génère des dumps contenant des caractères Unicode box-drawing (`└`, `├`, `│`, `─`)
+dans l'arborescence des fichiers. Ces caractères provoquent des erreurs d'affichage
+ou de parsing lorsqu'ils sont transmis à un LLM ou traités par des outils tiers.
+
+De plus, gitingest lit par défaut les fichiers sources avec l'encodage CP1252
+(code page Windows) au lieu d'UTF-8, ce qui produit du **mojibake** sur les
+caractères accentués (`documentÃ©s` au lieu de `documentés`).
+
+### Solution mise en place
+
+Un profil PowerShell (`$PROFILE`) a été configuré avec les éléments suivants :
+
+**Variables d'environnement** forçant Python à utiliser UTF-8 partout :
+
+```powershell
+$env:PYTHONIOENCODING = "utf-8"
+$env:PYTHONUTF8 = "1"
+```
+
+**Fonctions utilitaires** ajoutées au profil :
+
+| Fonction | Usage | Description |
+|----------|-------|-------------|
+| `cat8 fichier` | `cat8 CHANGELOG.md` | Affiche un fichier en UTF-8 |
+| `Clean-Tree fichier` | `Clean-Tree dump.txt` | Remplace les box-drawing Unicode par des espaces |
+| `gi-utf8 url` | `gi-utf8 https://github.com/user/repo` | Génère un dump gitingest nettoyé |
+| `gi-quick url` | `gi-quick https://github.com/user/repo` | Dump filtré (`.py`, `.js`, `.md`, max 100 Ko) |
+
+**Contenu complet du profil** (`notepad $PROFILE`) :
+
+```powershell
+# Encodage UTF-8 global
+$env:PYTHONIOENCODING = "utf-8"
+$env:PYTHONUTF8 = "1"
+
+# Lecture UTF-8
+function cat8 {
+    param([Parameter(Mandatory, Position=0)][string]$Path)
+    Get-Content $Path -Encoding UTF8
+}
+
+# Nettoyage box-drawing Unicode
+function Clean-Tree {
+    param([string]$Path)
+    if (Test-Path $Path) {
+        $content = Get-Content $Path -Encoding UTF8 -Raw
+        $regex = '[\u2514\u251c\u2502\u2500\u256d\u256e\u256f\u2570]'
+        $content = $content -replace $regex, ' '
+        $content | Out-File -Encoding UTF8 $Path
+    }
+}
+
+# GitIngest avec nettoyage automatique
+function gi-utf8 {
+    param([Parameter(Mandatory)][string]$Repo, [string]$Output=$null)
+    $cleanRepo = $Repo -replace '^\[.*\]\((.*)\)$','$1' -replace '\.git$',''
+    if (-not $Output) { $Output = "$(Split-Path $cleanRepo -Leaf).txt" }
+    Write-Host "[GI] Analyse GitHub: $cleanRepo" -ForegroundColor Cyan
+    gitingest $cleanRepo -o temp.txt
+    Clean-Tree temp.txt
+    if (Test-Path temp.txt) {
+        Move-Item temp.txt $Output -Force
+        $sizeKB = [math]::Round((Get-Item $Output).Length/1KB,1)
+        Write-Host "[OK] Digest ASCII: $Output ($sizeKB KB)" -ForegroundColor Green
+    }
+}
+
+# GitIngest filtré (fichiers clés uniquement)
+function gi-quick {
+    param([string]$Repo)
+    $cleanRepo = $Repo -replace '^\[.*\]\((.*)\)$','$1'
+    $fileName = "quick-$(Split-Path $cleanRepo -Leaf).txt"
+    gitingest $cleanRepo -i "*.py" -i "*.js" -i "*.md" -s 102400 -o temp.txt
+    Clean-Tree temp.txt
+    if (Test-Path temp.txt) {
+        Move-Item temp.txt $fileName -Force
+        Write-Host "[OK] Quick ASCII: $fileName" -ForegroundColor Green
+    }
+}
+```
+
+### Vérification
+
+```powershell
+# Recharger le profil
+. $PROFILE
+
+# Tester la lecture UTF-8
+cat8 CHANGELOG.md
+
+# Tester un dump gitingest nettoyé
+gi-utf8 https://github.com/octocat/Hello-World
+```
+
+---
+
 ## 🎯 **Fonctionnalités clés**
 
 - 📐 **Format A5 portrait** (148×210mm) – Imprimable urgence
