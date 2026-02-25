@@ -132,24 +132,42 @@ Un guide dédié est disponible, avec un mini‑script prêt à l’emploi :
 ## 📁 Structure du projet
 
 ```text
-polygone-evacuation-a5/
-├── Dockerfile
+PS C:\Users\bbrod\Projets\Polygone-Evacuation-a5> tree
+.
 ├── DEV_SETUP.md
-├── .editorconfig
-├── .gitattributes
-├── plan-evacuation.md
-├── style-pdf.css
-├── build.py
+├── Dockerfile
+├── LICENSE
 ├── Makefile
-├── tasks.ps1
-├── auto-release.ps1
-├── auto-release.sh
+├── README.md
+├── assets
+│   ├── plan-background.jpg
+│   └── style-pdf.css
+├── build.py
+├── docs
+│   ├── CHANGELOG.md
+│   ├── Hello-World.txt
+│   ├── MAINTAINING.md
+│   ├── Polygone-Evacuation-a5.txt
+│   └── mon_projet.txt
 ├── index.json
+├── plan-evacuation.md
 ├── pyproject.toml
-├── CHANGELOG.md
-├── tools/
-│   └── utf8_utils.ps1
-└── LICENSE
+├── pytest.ini
+├── scripts
+│   ├── auto-release.ps1
+│   ├── auto-release.sh
+│   ├── release.py
+│   └── update_changelog.py
+├── tasks.ps1
+├── tests
+│   ├── test-clean.txt
+│   ├── test-hello.txt
+│   ├── test-manuel.txt
+│   └── test_utf8.txt
+└── tools
+    └── utf8_utils.ps1
+
+5 directories, 27 files
 ```
 
 ---
